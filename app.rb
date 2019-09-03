@@ -5,6 +5,8 @@ require 'sinatra/base'
 
 set    :session_secret, "here be dragons"
 
+$STARTHP = 100
+
 class Battle_app < Sinatra::Base
 
   enable :sessions
@@ -22,9 +24,11 @@ class Battle_app < Sinatra::Base
   get '/play' do
     @Player1_Name = session[:Player1_Name]
     @Player2_Name = session[:Player2_Name]
+    @Player1_HP = $STARTHP
+    @Player2_HP = $STARTHP
     erb :play
   end
-  
+
 
   run! if app_file == $0
 
