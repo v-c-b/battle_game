@@ -25,14 +25,23 @@ end
 describe 'attack', type: :feature do
   scenario 'player 1 attacks player 2' do
     sign_in_and_play
-    click_button('Attack Player 2')
+    click_button('Attack')
     expect(page).to have_content "Dan attacked Volker"
   end
 
   scenario 'if player 1 attacks player 2, player 2 hit points reduces by 10' do
     sign_in_and_play
-    expect{click_button('Attack Player 2')}.to change{$GAME.p2.hit_points}.by(-10)
+    expect{click_button('Attack')}.to change{$GAME.p2.hit_points}.by(-10)
   end
 end
 
-
+describe 'switching turns', type: :feature do
+  scenario '2 attacks' do
+    sign_in_and_play
+    expect{click_button('Attack')}.to change{$GAME.p2.hit_points}.by(-10)
+    expect(page).to have_content "Dan attacked Volker"
+    click_button('Next turn')
+    expect{click_button('Attack')}.to change{$GAME.p1.hit_points}.by(-10)
+    expect(page).to have_content "Volker attacked Dan"
+  end
+end

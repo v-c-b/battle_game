@@ -1,7 +1,8 @@
 require 'sinatra'
 require 'shotgun'
 require 'sinatra/base'
-
+require './lib/game.rb'
+require './lib/player.rb'
 
 set    :session_secret, "here be dragons"
 
@@ -19,18 +20,21 @@ class Battle_app < Sinatra::Base
   end
 
   get '/play' do
-    @Player1_Name = $GAME.p1.name
-    @Player2_Name = $GAME.p2.name
-    @Player1_HP = $GAME.p1.hit_points
-    @Player2_HP = $GAME.p2.hit_points
+    @game = $GAME
+    @Player1_Name = @game.p1.name
+    @Player2_Name = @game.p2.name
+    @Player1_HP = @game.p1.hit_points
+    @Player2_HP = @game.p2.hit_points
     erb :play
   end
 
-  get '/attackp2' do
-    @Player1_Name = $GAME.p1.name
-    @Player2_Name = $GAME.p2.name
-    $GAME.attack($GAME.p2)
-    erb :attackp2
+  get '/attack' do
+    @game = $GAME
+    @Attacker = @game.current_turn.name
+    @Receiver = @game.receiver.name
+    @game.attack(@game.receiver)
+    @game.switch_turn
+    erb :attack
   end
 
 
