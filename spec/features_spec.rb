@@ -28,4 +28,11 @@ describe 'attack', type: :feature do
     click_button('Attack Player 2')
     expect(page).to have_content "Dan attacked Volker"
   end
+
+  scenario 'if player 1 attacks player 2, player 2 hit points reduces by 10' do
+    sign_in_and_play
+    expect{click_button('Attack Player 2')}.to change{$P2.hit_points}.by(-10)
+  end
 end
+
+

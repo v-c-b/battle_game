@@ -5,8 +5,6 @@ require 'sinatra/base'
 
 set    :session_secret, "here be dragons"
 
-$STARTHP = 100
-
 class Battle_app < Sinatra::Base
 
   enable :sessions
@@ -32,6 +30,7 @@ class Battle_app < Sinatra::Base
   get '/attackp2' do
     @Player1_Name = $P1.name
     @Player2_Name = $P2.name
+    $P2.receive_attack
     erb :attackp2
   end
 
