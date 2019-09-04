@@ -45,3 +45,15 @@ describe 'switching turns', type: :feature do
     expect(page).to have_content "Volker attacked Dan"
   end
 end
+
+describe 'losing condition', type: :feature do
+  scenario 'player has 0 hit points and loses the game' do
+    sign_in_and_play
+    18.times do
+      click_button("Attack")
+      click_button("Next turn")
+    end
+    click_button("Attack")
+    expect(page).to have_content "Volker died"
+  end
+end

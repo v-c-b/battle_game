@@ -34,7 +34,17 @@ class Battle_app < Sinatra::Base
     @Receiver = @game.receiver.name
     @game.attack(@game.receiver)
     @game.switch_turn
-    erb :attack
+    if @game.game_over?
+      redirect('/end')
+    else
+      erb :attack
+    end
+  end
+
+  get '/end' do
+    @game = $GAME
+    @loser = @game.loser.name
+    erb :end
   end
 
 

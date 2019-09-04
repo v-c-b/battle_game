@@ -22,4 +22,13 @@ class Game
       @receiver = @p2
     end
   end
+
+  def game_over?
+    @p1.hit_points <= 0 || @p2.hit_points <= 0
+  end
+
+  def loser
+    @p1.hit_points <= 0 ? @p1 : @p2
+  end
+
 end
