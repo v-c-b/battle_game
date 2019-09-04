@@ -1,9 +1,8 @@
-
 describe 'Game' do
-  let (:player) { double :player }
+  let(:player) { double :player }
 
   scenario 'can attack' do
-    expect(Game.new(player, player)).to respond_to (:attack)
+    expect(Game.new(player, player)).to respond_to(:attack)
   end
   scenario 'player receives damage when attacked' do
     expect(player).to receive(:receive_damage)

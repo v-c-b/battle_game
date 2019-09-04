@@ -1,9 +1,7 @@
 source 'https://rubygems.org' do
-
-gem 'rspec'
-gem 'sinatra'
-gem 'shotgun'
-gem 'capybara'
-gem 'selenium-webdriver'
-
+  gem 'capybara'
+  gem 'rspec'
+  gem 'selenium-webdriver'
+  gem 'shotgun'
+  gem 'sinatra'
 end
