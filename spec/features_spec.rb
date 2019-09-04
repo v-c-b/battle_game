@@ -31,7 +31,7 @@ describe 'attack', type: :feature do
 
   scenario 'if player 1 attacks player 2, player 2 hit points reduces by 10' do
     sign_in_and_play
-    expect{click_button('Attack Player 2')}.to change{$P2.hit_points}.by(-10)
+    expect{click_button('Attack Player 2')}.to change{$GAME.p2.hit_points}.by(-10)
   end
 end
 
