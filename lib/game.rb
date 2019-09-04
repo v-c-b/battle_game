@@ -18,7 +18,7 @@ class Game
   end
 
   def attack(player)
-    player.receive_damage
+    player.receive_damage(Random.rand(1..100))
   end
 
   def switch_turn
