@@ -21,3 +21,11 @@ describe 'player hitpoints', type: :feature do
       expect(page).to have_content "Volker #{$STARTHP} HP"
   end
 end
+
+describe 'attack', type: :feature do
+  scenario 'player 1 attacks player 2' do
+    sign_in_and_play
+    click_button('Attack Player 2')
+    expect(page).to have_content "Dan attacked Volker"
+  end
+end
